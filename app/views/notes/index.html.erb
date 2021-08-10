@@ -2,6 +2,16 @@
 
 <%= link_to "新增筆記", new_note_path %>
 
+<ol>
+    <% @note.each do |note| %>
+    <li><%= link_to note.title, note_path(note.id) %></li>
+    <% end %>
+</ol>
+
+
+
+
+<%#= @note.title,@note.title %>
 
 
 
