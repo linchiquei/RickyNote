@@ -23,7 +23,7 @@ class NotesController < ApplicationController
         @note = Note.new(clear_note)
 
         if(@note.save)
-            redirect_to "/notes" #這是蛇沒意思？
+            redirect_to "/notes/" #這是蛇沒意思？
         else
             render :new
         end
