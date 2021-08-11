@@ -2,16 +2,21 @@
 
 <%= link_to "新增筆記", new_note_path %>
 
-<ol>
-    <% @note.each do |note| %>
-    <li><%= link_to note.title, note_path(note.id) %></li>
+<ul>
+    <% @notes.each do |note| %>
+    <li><%= link_to note.title, note_path(note) %></li>
     <% end %>
-</ol>
+</ul>
 
-
+<%= @notes %>
 
 
 <%#= @note.title,@note.title %>
 
+<!-- html link 要放在哪？ -->
 
+<!-- 沒有加等號只是不會被渲染出 -->
 
+<%#= link_to note.title, note_path(note) %>
+<%#= link_to note.title, note %>
+<%#= link_to note.title, note_path(note.id) %>

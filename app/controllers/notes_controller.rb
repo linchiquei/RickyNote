@@ -1,11 +1,13 @@
 class NotesController < ApplicationController
 
     def index
-        @note = Note.order(id: :desc)
+        @notes = Note.all
     end
 
     def new
-        @note = Note.new
+        @note = Note.new() #為什麼是new一個model?
+        # @的用意在於說有 view 有@ 沒view沒@
+        # RAW SOL == select * from notes where id =2
     end
 
     def show
@@ -26,6 +28,8 @@ class NotesController < ApplicationController
             redirect_to "/notes/" #這是蛇沒意思？
         else
             render :new
+            #redirect_to "/notes/new"
+            #app/views/notes.new.html.erb
         end
     end
 end
