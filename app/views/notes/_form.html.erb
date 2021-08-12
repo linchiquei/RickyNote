@@ -1,0 +1,21 @@
+<% if note.errors.any? %>
+<ul>
+<% note.errors.full_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
+<% end %>
+
+
+
+<%= form_for note do |f| %>
+<div>
+    <%= f.label :title, 'title' %>
+    <%= f.text_field :title %>
+</div>
+<div>
+    <%= f.label :content, 'content' %>
+    <%= f.text_area :content %>
+</div>
+<%= f.submit %>
+<% end %>

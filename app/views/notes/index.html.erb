@@ -4,11 +4,17 @@
 
 <ul>
     <% @notes.each do |note| %>
-    <li><%= link_to note.title, note_path(note) %></li>
+    <li>
+        <%= link_to note.title, note_path(note) %>
+        <%= link_to "編輯", edit_note_path(note) %>
+		<%= link_to "刪除", note_path(note), method: 'delete', data: { confirm: '確定嗎？', id: note.id } %>    
+    </li>
+    
+    <!-- render collection -->
     <% end %>
 </ul>
 
-<%= @notes %>
+<%#= @notes %>
 
 
 <%#= @note.title,@note.title %>
@@ -20,3 +26,9 @@
 <%#= link_to note.title, note_path(note) %>
 <%#= link_to note.title, note %>
 <%#= link_to note.title, note_path(note.id) %>
+<!-- 叫google爬蟲不要跟過來 
+<a rel="nofollow" data-method="delete" href="/notes/1">刪除</a>
+-->
+<!-- SPA = single page application -->
+<!-- SSR = server-side renderer -->
+<!-- rails turbolink 在背後默默的擾資料回來 紅寶鐵軌客-->

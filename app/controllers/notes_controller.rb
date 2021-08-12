@@ -1,7 +1,11 @@
 class NotesController < ApplicationController
 
+    before_action :find_note, only: [ :show, :edit, :update, :destroy ]
+    #same as before_filter
+
     def index
-        @notes = Note.all
+		# @notes = Note.all.sort.reverse  X
+		@notes = Note.order(id: :desc)
     end
 
     def new
@@ -11,7 +15,6 @@ class NotesController < ApplicationController
     end
 
     def show
-        @note = Note.find(params[:id])
     end
 
     def create
@@ -21,7 +24,7 @@ class NotesController < ApplicationController
         #content = params[:content]
         #@note = Note.new(title: title, content: content)
 
-        clear_note = params.require(:note).permit(:title, :content)
+        clear_note = note_params
         @note = Note.new(clear_note)
 
         if(@note.save)
@@ -32,4 +35,34 @@ class NotesController < ApplicationController
             #app/views/notes.new.html.erb
         end
     end
+
+    def edit
+    end
+
+    def update
+        clear_note = note_params
+        if @note.update(clear_note)
+            redirect_to "/notes/" 
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+		@note.destroy
+		redirect_to "/notes"
+    end
+
+    private
+    def note_params
+        params.require(:note).permit(:title, :content)
+    end
+
+    private
+    def find_note
+        @note = Note.find(params[:id])
+    end
 end
+
+#destory方法是post
+#robots.txt

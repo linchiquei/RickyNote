@@ -10,14 +10,4 @@
     <% end %>
 </form> -->
 
-<%= form_for @note do |f| %>
-<div>
-    <%= f.label :title, 'title' %>
-    <%= f.text_field :title %>
-</div>
-<div>
-    <%= f.label :content, 'content' %>
-    <%= f.text_area :content %>
-</div>
-<%= f.submit 'go' %>
-<% end %>
+<%= render 'form', note: @note %>
