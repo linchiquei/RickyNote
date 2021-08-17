@@ -1,0 +1,30 @@
+註冊會員
+
+<% if @user.errors.any? %>
+<ul>
+<% @user.errors.full_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
+<% end %>
+
+
+<%= form_for @user, url: {action: "create"} do |f| %>
+<div>
+    <%= f.label :account, 'account' %>
+    <%= f.text_field :account %>
+</div>
+<div>
+    <%= f.label :password, 'password' %>
+    <%= f.password_field :password %>
+</div>
+<div>
+    <%= f.label :password_confirmation, 'password' %>
+    <%= f.password_field :password_confirmation %>
+</div>
+<div>
+    <%= f.label :email, 'email' %>
+    <%= f.email_field :email %>
+</div>
+<%= f.submit 'Create' %>
+<% end %>

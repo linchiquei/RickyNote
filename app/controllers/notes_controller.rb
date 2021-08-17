@@ -2,6 +2,8 @@ class NotesController < ApplicationController
 
     before_action :find_note, only: [ :show, :edit, :update, :destroy ]
     #same as before_filter
+    #include UsersHelper
+    before_action :check_login!, except: [:index, :show]
 
     def index
 		# @notes = Note.all.sort.reverse  X
@@ -9,6 +11,10 @@ class NotesController < ApplicationController
     end
 
     def new
+        # if session[:thankyou] == nil
+        #     redirect_to 'users/sign_in'
+        # end
+
         @note = Note.new() #為什麼是new一個model?
         # @的用意在於說有 view 有@ 沒view沒@
         # RAW SOL == select * from notes where id =2
@@ -49,7 +55,7 @@ class NotesController < ApplicationController
     end
 
     def destroy
-		@note.destroy
+		@note.update(deleted_at: Time.now)
 		redirect_to "/notes"
     end
 

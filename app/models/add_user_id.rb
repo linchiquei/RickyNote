@@ -1,0 +1,2 @@
+class AddUserId < ApplicationRecord
+end

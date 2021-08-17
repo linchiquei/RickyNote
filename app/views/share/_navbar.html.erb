@@ -1,0 +1,14 @@
+<nav>
+      
+    <% if user_signed_in? %>
+    <%= link_to '登出', logout_path, method: 'delete' %> ｜
+    <%= current_user.email %>
+    <% else %>
+    <%= link_to '登入', users_sign_in_path %> ｜ 
+    <%= link_to '註冊', sign_up_users_path  %> |
+    <% end %>
+  
+    <%#=  %>
+  </nav>
+
+  <!-- link_to 預設是用 get 方法！所以不是用 get 的話要記得加給她方法 -->

@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-#get "/notes", to:  "notes#main"
+
 get "/hello" , to: "pages#main"
 get "/about" , to: "pages#about"
-get "/users" , to: "users#profile"
+#get "/users" , to: "users#profile"
 end
 
 Rails.application.routes.draw do
     resources :notes
+    get "/", to: "notes#index"
+
+    resources :users, only: [:create] do
+      collection do
+        get :sign_up #GET /users/sign_up 註冊表單
+        get :sign_in #GET /users/sign_in 登入表單
+        #post :sign_in #POST /users/sign_in 登入
+      end
+    end
+
+    post "/users/sign_in", to: "sessions#create"
+    delete '/users', to: 'sessions#destory', as: 'logout'
   end
