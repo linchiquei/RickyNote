@@ -3,3 +3,16 @@
 <p>
     <%= @note.content %>
 </p> 
+
+<%= form_for @comment, url: note_comments_path(@note) do |f| %>
+    <%= f.text_area :content %>
+    <%= f.submit 'create comment' %>
+<% end %>
+
+<ul>
+    <% @comments.each do |comment| %>
+    <li>
+        <%= comment.content %>
+    </li>
+    <% end %>
+</ul>

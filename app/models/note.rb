@@ -10,5 +10,7 @@ class Note < ApplicationRecord
     default_scope {where(deleted_at: nil)}
     #所有查詢裡面都會加上這段
 
-    #belongs_to :users
+    #belongs_to :user
+    belongs_to :user
+	has_many :comments
 end

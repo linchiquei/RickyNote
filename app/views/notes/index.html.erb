@@ -3,15 +3,20 @@
 <%= link_to "新增筆記", new_note_path %>
 
 <ul>
-    <% @notes.each do |note| %>
-    <li>
-        <%= link_to note.title, note_path(note) %>
-        <%= link_to "編輯", edit_note_path(note) %>
-		<%= link_to "刪除", note_path(note), method: 'delete', data: { confirm: '確定嗎？', id: note.id } %>    
-    </li>
     
-    <!-- render collection -->
-    <% end %>
+<% @notes.each do |note| %>
+  <li>
+	  
+	  <%= note.user.email %> 
+	  
+		<%= link_to note.title, note_path(note) %>
+		<%= link_to "編輯", edit_note_path(note) %>
+		<%= link_to "刪除", note_path(note),
+		                    method: 'delete',
+												data: { confirm: '確定嗎？', id: note.id }
+											%>
+	</li>
+<% end %>
 </ul>
 
 <%#= @notes %>
@@ -32,3 +37,6 @@
 <!-- SPA = single page application -->
 <!-- SSR = server-side renderer -->
 <!-- rails turbolink 在背後默默的擾資料回來 紅寶鐵軌客-->
+
+<%#= note.user.email %> 
+<!-- 為什麼能這樣點？ -->

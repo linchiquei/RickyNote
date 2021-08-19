@@ -6,7 +6,11 @@ get "/about" , to: "pages#about"
 end
 
 Rails.application.routes.draw do
-    resources :notes
+    resources :notes do
+      resources :comments, only: [:index, :create]
+    end
+    resources :comments, only: [:show, :destroy]
+      
     get "/", to: "notes#index"
 
     resources :users, only: [:create] do
