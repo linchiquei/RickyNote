@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
         @note.comments.new(comment_params)
         #@note.user = current_user
 
+        
         if(@note.save)
-            redirect_to @note #這個是簡寫
+            @content = comment_params[:content]
+            #redirect_to @note #這個是簡寫
             # '/notes/#{@note.id}'
             # note_path(@note)
             # 如果是要直接去看 show 頁面 Prefix 可以省略
@@ -25,7 +27,7 @@ class CommentsController < ApplicationController
     end
 
     def find_user_note
-        @note = current_user.notes.find(params[:note_id])
+        @note = Note.find(params[:note_id])
     end
 end
 

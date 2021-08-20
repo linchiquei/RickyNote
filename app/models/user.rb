@@ -10,7 +10,8 @@ class User < ApplicationRecord
     # end
 
     before_create :add_password
-    has_many :notes
+
+    has_many :notes #rails5 以後 has_many 會需要在 create note 時，知道 user 是誰！
     # u4 = User.find(14)
     # u4.notes = []
     # u4.notes

@@ -6,6 +6,7 @@ get "/about" , to: "pages#about"
 end
 
 Rails.application.routes.draw do
+  #shallow nesting
     resources :notes do
       resources :comments, only: [:index, :create]
     end
